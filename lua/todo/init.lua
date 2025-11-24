@@ -29,7 +29,7 @@ M.default_options = {
 
 M.options = {}
 
-function M.setup(opts)
+M.setup = function(opts)
   M.options = vim.tbl_deep_extend("force", M.default_options, opts or {})
 
   vim.api.nvim_create_autocmd("FileType", {

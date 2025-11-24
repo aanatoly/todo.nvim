@@ -74,7 +74,7 @@ local function fix_done_task_states(tasks, _)
   fix_task_states(tasks, is_valid_state, default_state)
 end
 
-M.get_root_node = function(bufnr, filetype)
+local function get_root_node(bufnr, filetype)
   local parser = vts.get_parser(bufnr, filetype)
   if not parser then
     return
@@ -86,7 +86,7 @@ end
 
 M.parse_tasks = function(options, bufnr)
   local tasks = { open = {}, done = {} }
-  local root = M.get_root_node(bufnr, "markdown")
+  local root = get_root_node(bufnr, "markdown")
   if root == nil then
     vim.notify("can't get markdown parser for buffer " .. bufnr)
     return tasks

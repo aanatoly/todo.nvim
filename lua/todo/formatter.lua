@@ -4,7 +4,7 @@ local vts = vim.treesitter
 
 local M = {}
 
-M.compare_line_lists = function(lines1, lines2)
+local function compare_line_lists(lines1, lines2)
   if #lines1 ~= #lines2 then
     return false
   end
@@ -65,7 +65,7 @@ M.format_as_lines = function(options, bufnr)
   return lines
 end
 
-function M.format(options)
+M.format = function(options)
   if vim.bo.filetype ~= "markdown" then
     vim.notify("Not a markdown file", vim.log.levels.WARN)
     return
@@ -74,7 +74,7 @@ function M.format(options)
   local bufnr = vim.api.nvim_get_current_buf()
   local lines = M.format_as_lines(options, bufnr)
   local lines2 = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-  if not M.compare_line_lists(lines, lines2) then
+  if not compare_line_lists(lines, lines2) then
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
   end
 

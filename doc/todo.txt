@@ -1,0 +1,23 @@
+*todo.txt* Todo management plugin
+
+INTRODUCTION                                    *todo*
+
+This plugin provides tools to manage todo lists in markdown files,
+including formatting, reordering, and real-time summaries.
+
+COMMANDS                                         *todo-commands*
+
+:TodoFormat                                      *TodoFormat*
+    Formats and reorders tasks in the current markdown buffer into
+    structured sections. Also enables automatic summary updates.
+
+CONFIGURATION                                    *todo-configuration*
+
+See the README.md file for available configuration options and examples.
+For more details, visit https://github.com/aanatoly/nvim-todo
+
+REQUIREMENTS                                     *todo-requirements*
+
+Requires nvim-treesitter with the markdown parser installed.
+
+ vim:tw=78:ts=8:ft=help:norl:

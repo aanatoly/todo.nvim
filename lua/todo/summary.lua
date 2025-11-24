@@ -63,6 +63,7 @@ M.auto_update_summary = function(options, bufnr)
       M.update_summary(options, bufnr)
     end,
   })
+  M.update_summary(options, bufnr)
 end
 
 return M

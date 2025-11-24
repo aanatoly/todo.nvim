@@ -1,5 +1,4 @@
 local parser = require "todo.parser"
-local formatter = require "todo.formatter"
 local summary = require "todo.summary"
 local vts = vim.treesitter
 
@@ -51,7 +50,6 @@ M.format_as_lines = function(options, bufnr)
   vim.list_extend(lines, { "", options.open.name, options.done.name })
 
   local tasks = parser.parse_tasks(options, bufnr)
-  vim.b.tdf_tasks = tasks
   local h2_state = "open"
   local h3_states = {}
   for _, v in pairs(options.open.states) do

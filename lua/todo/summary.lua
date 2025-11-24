@@ -32,14 +32,7 @@ M.update_summary = function(options, bufnr)
     return
   end
 
-  local tasks = {}
-  if vim.b.tdf_tasks then
-    tasks = vim.b.tdf_tasks
-    vim.b.tdf_tasks = nil
-  else
-    tasks = parser.parse_tasks(options, bufnr)
-  end
-
+  local tasks = parser.parse_tasks(options, bufnr)
   local stats = { open = {}, done = {} }
   for h2_state, h2_tasks in pairs(tasks) do
     for h3_state, h3_tasks in pairs(h2_tasks) do

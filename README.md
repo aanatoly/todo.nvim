@@ -2,6 +2,28 @@
 
 A simple Neovim plugin to manage todo lists in markdown files.
 
+## Features
+
+- Formatting and reordering of tasks into structured sections (Open/Done with states)
+
+  ```markdown
+  # Personal Todo List
+
+  Open
+  Done
+
+  ## Open
+
+  ### wip
+
+  ### todo
+
+  ## Done
+  ```
+
+- Real-time summary with virtual text showing task counts and icons at section headers
+- Automatic detection of todo list format on open
+
 ## Installation
 
 Install using [lazy.nvim](https://github.com/folke/lazy.nvim):
@@ -18,13 +40,6 @@ return {
 }
 ```
 
-## Features
-
-- Automatic detection of todo list format in markdown files
-- Formatting and reordering of tasks into structured sections (Open/Done with states)
-- Real-time summary with virtual text showing task counts and icons at section headers
-- Automatic updates on text changes
-
 ## Requirements
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) with markdown parser installed
@@ -33,11 +48,7 @@ return {
 
 1. Open a markdown file containing todo tasks in `- [ ]` format.
 2. Run `:TodoFormat` to format and reorder the tasks into structured sections.
-3. Virtual text will appear at the end of "Open" and "Done" headers, displaying
-   task counts with icons.
-   - Note: If the file is already in the plugin's format (starts with H1 header,
-     followed by empty line, 'Open', 'Done', and another empty line), the summary
-     virtual text will start automatically upon opening, without needing to run `:TodoFormat`.
+3. Virtual text will appear below H1 header, displaying task counts with icons.
 4. The summary updates automatically as you edit the file.
 
 ## Configuration

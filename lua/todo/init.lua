@@ -21,7 +21,6 @@ M.default_options = {
     name = "Done",
     icon = " ",
     states = {
-      -- replaced by current date
       { name = "today", icon = " " },
     },
   },

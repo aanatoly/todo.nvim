@@ -16,14 +16,14 @@ local function compare_line_lists(lines1, lines2)
   return true
 end
 
-local function build_h3_section(lines, h3_state, h3_tasks)
+local function build_h3_section(lines, h3_state, h3_tasks, bufnr)
   vim.list_extend(lines, { "", "### " .. h3_state })
   if not h3_tasks then
     return lines
   end
   vim.list_extend(lines, { "" })
   for _, task in ipairs(h3_tasks) do
-    local text = vts.get_node_text(task, 0)
+    local text = vts.get_node_text(task, bufnr)
     for line in text:gmatch "[^\r\n]+" do
       table.insert(lines, line)
     end
@@ -31,11 +31,11 @@ local function build_h3_section(lines, h3_state, h3_tasks)
   return lines
 end
 
-local function build_h2_section(name, h2_tasks, h3_states)
+local function build_h2_section(name, h2_tasks, h3_states, bufnr)
   local lines = { "", "## " .. name }
 
   for _, h3_state in ipairs(h3_states) do
-    build_h3_section(lines, h3_state, h2_tasks[h3_state])
+    build_h3_section(lines, h3_state, h2_tasks[h3_state], bufnr)
   end
   return lines
 end
@@ -50,13 +50,15 @@ M.format_as_lines = function(options, bufnr)
   for _, v in pairs(options.open.states) do
     table.insert(h3_states, v["name"])
   end
-  vim.list_extend(lines, build_h2_section(options[h2_state].name, tasks[h2_state], h3_states))
+  local h2_lines = build_h2_section(options[h2_state].name, tasks[h2_state], h3_states, bufnr)
+  vim.list_extend(lines, h2_lines)
   h2_state = "done"
   h3_states = vim.tbl_keys(tasks[h2_state])
   table.sort(h3_states, function(a, b)
     return a > b
   end)
-  vim.list_extend(lines, build_h2_section(options[h2_state].name, tasks[h2_state], h3_states))
+  h2_lines = build_h2_section(options[h2_state].name, tasks[h2_state], h3_states, bufnr)
+  vim.list_extend(lines, h2_lines)
   return lines
 end
 

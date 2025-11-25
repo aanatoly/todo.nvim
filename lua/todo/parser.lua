@@ -19,15 +19,7 @@ local function iter_tasks(bufnr, root, task_type, cb)
   local query = [[
 (section
   (atx_heading
-      [
-        (atx_h1_marker)
-        (atx_h2_marker)
-        (atx_h3_marker)
-        (atx_h4_marker)
-        (atx_h5_marker)
-        (atx_h6_marker)
-      ] @hdr_marker
-      heading_content:(inline) @hdr)
+    heading_content:(inline) @hdr)?
   (list
     (list_item
         (task_list_marker_%s)) @li))
@@ -35,8 +27,8 @@ local function iter_tasks(bufnr, root, task_type, cb)
   query = string.format(query, task_type)
   query = tsc.parse_query("markdown", query)
   for _, match, _ in query:iter_matches(root, bufnr, 0, -1) do
-    local hdr_t = vts.get_node_text(match[2][1], 0)
-    cb(hdr_t, match[3][1])
+    local hdr_t = match[1] and vts.get_node_text(match[1][1], bufnr) or ""
+    cb(hdr_t, match[2][1])
   end
 end
 

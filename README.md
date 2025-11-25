@@ -27,7 +27,13 @@ return {
   cmd = { "TodoFormat" },
   ft = { "markdown" },
   keys = {
-    { "<leader>ft", vim.cmd "TodoFormat", desc = "Todo Format" },
+    {
+      "<leader>ft",
+      function()
+        vim.cmd "TodoFormat"
+      end,
+      desc = "Todo Format",
+    },
   },
   opts = {}, -- see configuration below
 }
@@ -61,7 +67,6 @@ opts = {
     name = "Done", -- Name for done tasks section
     icon = " ", -- Icon for done tasks
     states = {
-      -- replaced by current date
       { name = "today", icon = " " },
     },
   },

@@ -112,4 +112,22 @@ M.parse_tasks = function(options, bufnr)
   return tasks
 end
 
+M.parse_title = function(bufnr)
+  local root = get_root_node(bufnr, "markdown")
+  if root == nil then
+    return nil
+  end
+  local query = [[
+(atx_heading
+  (atx_h1_marker)
+  heading_content:(inline) @title)
+  ]]
+  query = tsc.parse_query("markdown", query)
+  for _, match, _ in query:iter_matches(root, bufnr, 0, -1) do
+    local title_node = match[1][1]
+    return vts.get_node_text(title_node, bufnr)
+  end
+  return nil
+end
+
 return M

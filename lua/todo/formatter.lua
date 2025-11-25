@@ -41,12 +41,7 @@ local function build_h2_section(name, h2_tasks, h3_states)
 end
 
 M.format_as_lines = function(options, bufnr)
-  -- ensure h1 header, it makes parsing simple
-  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)
-  if not (#lines == 1 and lines[1]:match "^# ") then
-    lines = { "# " .. options.title }
-    vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines)
-  end
+  local lines = { "# " .. (parser.parse_title(bufnr) or options.title) }
   vim.list_extend(lines, { "", options.open.name, options.done.name })
 
   local tasks = parser.parse_tasks(options, bufnr)

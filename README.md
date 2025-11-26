@@ -27,13 +27,7 @@ return {
   cmd = { "TodoFormat" },
   ft = { "markdown" },
   keys = {
-    {
-      "<leader>ft",
-      function()
-        vim.cmd "TodoFormat"
-      end,
-      desc = "Todo Format",
-    },
+    { "<leader>ft", "<cmd>TodoFormat<cr>", desc = "Todo Format" },
   },
   opts = {}, -- see configuration below
 }

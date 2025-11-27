@@ -1,6 +1,6 @@
-# nvim-todo
+# `todo.nvim`
 
-A simple Neovim plugin to manage todo lists in markdown files.
+[Neovim] plugin to manage todo lists in markdown files.
 
 ![Screenshot](assets/screenshot1.png)
 
@@ -23,7 +23,7 @@ Install using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 return {
-  "aanatoly/nvim-todo",
+  "aanatoly/todo.nvim",
   cmd = { "TodoFormat" },
   ft = { "markdown" },
   keys = {
@@ -66,3 +66,5 @@ opts = {
   },
 }
 ```
+
+[Neovim]: https://neovim.io/

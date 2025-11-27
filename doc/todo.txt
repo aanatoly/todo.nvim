@@ -14,7 +14,7 @@ COMMANDS                                         *todo-commands*
 CONFIGURATION                                    *todo-configuration*
 
 See the README.md file for available configuration options and examples.
-For more details, visit https://github.com/aanatoly/nvim-todo
+For more details, visit https://github.com/aanatoly/todo.nvim
 
 REQUIREMENTS                                     *todo-requirements*
 

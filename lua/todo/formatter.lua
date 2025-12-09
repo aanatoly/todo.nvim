@@ -42,7 +42,6 @@ end
 
 M.format_as_lines = function(options, bufnr)
   local lines = { "# " .. (parser.parse_title(bufnr) or options.title) }
-  vim.list_extend(lines, { "", options.open.name, options.done.name })
 
   local tasks = parser.parse_tasks(options, bufnr)
   local h2_state = "open"
@@ -59,6 +58,7 @@ M.format_as_lines = function(options, bufnr)
   end)
   h2_lines = build_h2_section(options[h2_state].name, tasks[h2_state], h3_states, bufnr)
   vim.list_extend(lines, h2_lines)
+  vim.list_extend(lines, {"", options.footnote})
   return lines
 end
 

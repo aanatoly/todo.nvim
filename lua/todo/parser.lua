@@ -4,15 +4,11 @@ local vts = vim.treesitter
 local M = {}
 
 M.is_formatted = function(options, bufnr)
-  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 5, false)
-  if #lines < 5 then
+  local lines = vim.api.nvim_buf_get_lines(bufnr, -2, -1, false)
+  if #lines < 1 then
     return false
   end
-  return lines[1]:match "^# "
-    and lines[2] == ""
-    and lines[3] == options.open.name
-    and lines[4] == options.done.name
-    and lines[5] == ""
+  return lines[1] == options.footnote
 end
 
 local function iter_tasks(bufnr, root, task_type, cb)

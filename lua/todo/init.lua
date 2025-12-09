@@ -7,6 +7,7 @@ local M = {}
 local default_opts = {
   filetype = "markdown",
   title = "Personal Todo List",
+  footnote = "> [!HINT] formatted by todo.nvim",
   open = {
     name = "Open",
     icon = " ",

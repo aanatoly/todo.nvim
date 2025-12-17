@@ -13,9 +13,9 @@ local default_opts = {
     icon = " ",
     default = "todo",
     states = {
-      { name = "wip", icon = " " },
-      { name = "todo", icon = " " },
-      { name = "soon", icon = " " },
+      { name = "WIP", icon = " " },
+      { name = "Todo", icon = " " },
+      { name = "Soon", icon = " " },
     },
   },
   done = {

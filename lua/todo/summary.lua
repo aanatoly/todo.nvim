@@ -69,7 +69,7 @@ local function box_wrap(virt_lines, padding, border_hl)
   return wrapped
 end
 
-local function locate_virt_text(bufnr)
+local function locate_virt_text(_)
   local old_pos = vim.api.nvim_win_get_cursor(0)
   vim.api.nvim_win_set_cursor(0, { 1, 1 })
   local lnum = vim.fn.search("^##\\s\\+", "W")

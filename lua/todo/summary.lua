@@ -86,7 +86,6 @@ local box = {
 local function update_virt_text(options, bufnr, ns, stats)
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 
-  local pos = 1
   local name_len = math.max(unpack { #options.open.name, #options.done.name })
   local lines = {}
 
@@ -105,12 +104,12 @@ local function update_virt_text(options, bufnr, ns, stats)
     table.insert(line, { string.format(" %s ", box.full), "Comment" })
 
     for _, v in ipairs(options[h2_state].states) do
-      table.insert(line, { "  ", "Normal" })
+      table.insert(line, { " ", "Normal" })
       table.insert(line, { v.icon, "keyword" })
-      table.insert(line, { v.name, "Normal" })
+      table.insert(line, { string.lower(v.name), "Normal" })
       table.insert(line, { ":", "Comment" })
       table.insert(line, { "" .. (stats[h2_state][v.name] or 0), "Number" })
-      table.insert(line, { "  ", "Normal" })
+      table.insert(line, { "   ", "Normal" })
     end
     table.insert(lines, line)
   end

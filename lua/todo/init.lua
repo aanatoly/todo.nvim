@@ -23,6 +23,7 @@ local default_opts = {
     icon = " ",
     states = {
       { name = "today", icon = " " },
+      { name = "past", icon = " " },
     },
   },
 }

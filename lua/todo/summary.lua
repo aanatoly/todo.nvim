@@ -145,8 +145,15 @@ M.update_summary = function(options, bufnr)
   end
   vim.b.tdf_info.stats = vim.deepcopy(stats)
   local today = os.date "%Y-%m-%d"
-  stats.done["today"] = stats.done[today] or 0
-  stats.done[today] = nil
+  local sdone = { today = 0, past = 0 }
+  for h3_state, h3_tasks in pairs(stats.done) do
+    if h3_state == today then
+      sdone.today = h3_tasks
+    else
+      sdone.past = sdone.past + h3_tasks
+    end
+    stats.done = sdone
+  end
   update_virt_text(options, bufnr, vim.b.tdf_info.ns, stats)
 end
 

@@ -11,7 +11,7 @@ local default_opts = {
   open = {
     name = "Open",
     icon = " ",
-    default = "todo",
+    default = "Todo",
     states = {
       { name = "WIP", icon = " " },
       { name = "Todo", icon = " " },

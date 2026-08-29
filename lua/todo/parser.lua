@@ -1,4 +1,3 @@
-local tsc = require "nvim-treesitter.compat"
 local vts = vim.treesitter
 
 local M = {}
@@ -20,9 +19,8 @@ local function iter_tasks(bufnr, root, task_type, cb)
     (list_item
         (task_list_marker_%s)) @li))
 ]]
-  query = string.format(query, task_type)
-  query = tsc.parse_query("markdown", query)
-  for _, match, _ in query:iter_matches(root, bufnr, 0, -1) do
+  local xquery = vts.query.parse("markdown", string.format(query, task_type))
+  for _, match, _ in xquery:iter_matches(root, bufnr, 0, -1) do
     local hdr_t = match[1] and vts.get_node_text(match[1][1], bufnr) or ""
     cb(hdr_t, match[2][1])
   end
@@ -110,8 +108,8 @@ M.parse_title = function(bufnr)
   (atx_h1_marker)
   heading_content:(inline) @title)
   ]]
-  query = tsc.parse_query("markdown", query)
-  for _, match, _ in query:iter_matches(root, bufnr, 0, -1) do
+  local xquery = vts.query.parse("markdown", query)
+  for _, match, _ in xquery:iter_matches(root, bufnr, 0, -1) do
     local title_node = match[1][1]
     return vts.get_node_text(title_node, bufnr)
   end

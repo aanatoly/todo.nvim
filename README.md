@@ -19,7 +19,7 @@
 
 ## Installation
 
-Install using [lazy.nvim](https://github.com/folke/lazy.nvim):
+Install using [lazy.nvim]:
 
 ```lua
 return {
@@ -35,7 +35,7 @@ return {
 
 ## Requirements
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) with markdown parser installed
+- [nvim-treesitter] with markdown parser installed
 
 ## Configuration
 
@@ -68,3 +68,5 @@ opts = {
 ```
 
 [Neovim]: https://neovim.io/
+[nvim-treesitter]: https://github.com/nvim-treesitter/nvim-treesitter
+[lazy.nvim]: https://github.com/folke/lazy.nvim
